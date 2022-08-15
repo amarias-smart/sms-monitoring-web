@@ -1,7 +1,5 @@
 <template>
-  <q-page
-    padding
-  >
+  <q-page padding>
     <div>
       <q-banner
         rounded
@@ -31,6 +29,7 @@ import { ref } from 'vue'
 import { SMSModel } from 'src/models/SmsDataModel'
 import CardComponentVue from 'src/components/CardComponent.vue'
 import { getAll as getAllSmpp } from 'src/services/smpp'
+import { getAll as getAllIresolve } from 'src/services/iresolve'
 
 const smsUpdateDetail = ref('')
 const smsDetails = ref<SMSModel[]>()
@@ -38,9 +37,11 @@ const smsDetails = ref<SMSModel[]>()
 const fetchData = async () => {
   const datetime: Date = new Date()
   smsUpdateDetail.value = datetime.toLocaleString()
-  const { data: smmData } = await getAllSmpp()
 
-  smsDetails.value = smmData
+  const { data: smmData } = await getAllSmpp()
+  const { data: iresolveData } = await getAllIresolve()
+
+  smsDetails.value = [...smmData, ...iresolveData]
 
   setTimeout(() => { fetchData() }, 3000)
 }
