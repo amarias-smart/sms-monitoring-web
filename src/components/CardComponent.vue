@@ -2,7 +2,7 @@
   <q-card class="text-white overflow-hidden">
     <q-card-section class="bg-teal-10">
       <div class="text-center text-h6">
-        {{ Cli }} (<span class="text-weight-thin">{{ Total }}</span>)
+        {{ Cli }} (<span class="text-weight-thin text-orange-3">{{ Total }}</span>)
       </div>
     </q-card-section>
     <q-card-section class="bg-teal-9 row q-col-gutter-sm">

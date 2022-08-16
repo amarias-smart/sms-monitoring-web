@@ -3,7 +3,7 @@
 
     <q-header
       elevated
-      class="bg-dark text-deep-purple-4"
+      class="bg-dark"
     >
       <q-toolbar>
         <q-btn
@@ -17,6 +17,10 @@
         <q-toolbar-title>
           SMS MONITORING
         </q-toolbar-title>
+
+        <div class="text-h6 text-orange">
+          {{ updatedAsOf.timestamp }}
+        </div>
       </q-toolbar>
     </q-header>
 
@@ -37,19 +41,14 @@
   </q-layout>
 </template>
 
-<script>
+<script setup>
 import { ref } from 'vue'
+import { useUpdatedAsOfStore } from 'stores/updatedAsOf'
 
-export default {
-  setup () {
-    const leftDrawerOpen = ref(false)
+const updatedAsOf = useUpdatedAsOfStore()
+const leftDrawerOpen = ref(false)
 
-    return {
-      leftDrawerOpen,
-      toggleLeftDrawer () {
-        leftDrawerOpen.value = !leftDrawerOpen.value
-      }
-    }
-  }
+const toggleLeftDrawer = () => {
+  leftDrawerOpen.value = !leftDrawerOpen.value
 }
 </script>
